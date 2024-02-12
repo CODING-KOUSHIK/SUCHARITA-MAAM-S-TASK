@@ -1,0 +1,31 @@
+import math
+import numpy as np
+import pandas as pd
+import seaborn as sb
+import matplotlib.pyplot as plt
+def skewness_kurtosis(numbers):
+    # Mean and standard deviation
+    mean = sum(numbers) / len(numbers)
+    print(mean)
+    differences = [(number - mean) ** 2 for number in numbers]
+    print("difference", differences)
+    variance = sum(differences) / len(numbers)
+    print("varinaces",variance)
+    std_dev = math.sqrt(variance)
+    print("standard deviation",std_dev)
+    
+    # Skewness
+    skewness = sum([(number - mean) ** 3 for number in numbers]) / (len(numbers) * std_dev ** 3)
+    
+    # Kurtosis
+    kurtosis = sum([(number - mean) ** 4 for number in numbers]) / (len(numbers) * std_dev ** 4) - 3
+    
+    return skewness, kurtosis
+numbers = np.arange (1,20)
+print(numbers)
+skewness, kurtosis = skewness_kurtosis(numbers)
+#print("mean:", mean)
+print("Skewness:", skewness)
+print("Kurtosis:", kurtosis)
+
+
